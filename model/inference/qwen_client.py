@@ -61,7 +61,7 @@ class QwenClient:
 
     def _get_system_info(self):
         """Recupera informazioni di sistema (data e ora) in italiano."""
-        now = datetime.now()
+        now = datetime.now().replace(tzinfo=None)
         data = now.strftime("%d/%m/%Y")
         ora = now.strftime("%H:%M:%S")
         giorni = {
@@ -159,7 +159,6 @@ class QwenClient:
         )
 
         inputs = self.tokenizer([text], return_tensors="pt")
-        # Evita mismatch con device_map="auto": metti gli input su un device valido
         try:
             inputs = inputs.to(self.model.device)
         except Exception:
@@ -179,7 +178,6 @@ class QwenClient:
             skip_special_tokens=True
         ).strip()
 
-        # Prendi solo la prima "parola/riga" e ripulisci
         label = raw.splitlines()[0].strip()
         label = label.split()[0].strip().strip('",.:')
 
