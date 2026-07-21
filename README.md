@@ -5,10 +5,10 @@ Ottimizzato con quantizzazione a 4-bit per girare su GPU con poca VRAM (<6GB).
 
 ## Setup Iniziale
 
-### 1. Installare le dipendenze
+### 1. Installare le dipendenze all'interno della cartella principale
 
 ```bash
-cd chatbot
+cd fia-aidano-main
 pip install -r requirements.txt
 ```
 
@@ -55,7 +55,7 @@ python model/training/fine_tune.py
 ## Struttura del Progetto
 
 ```
-chatbot/
+fia-aidano-main/
 ├── model/
 │   ├── inference/          # Codice per inferenza
 │   │   ├── qwen_client.py  # Client QWEN (3B 4-bit)
