@@ -1,9 +1,9 @@
-# 🤖 Chatbot QWEN per Map4Aid
+# Chatbot QWEN per Map4Aid
 
 Chatbot knowledge-based basato su QWEN 2.5-3B per assistenza utenti su piattaforma di beneficenza.
 Ottimizzato con quantizzazione a 4-bit per girare su GPU con poca VRAM (<6GB).
 
-## 🚀 Setup Iniziale
+## Setup Iniziale
 
 ### 1. Installare le dipendenze
 
@@ -32,7 +32,7 @@ Esistono due modalità di test:
   python model/inference/test_qwen_tuning.py
   ```
 
-## 🏋️ Addestramento (Fine-tuning)
+## Addestramento (Fine-tuning)
 
 Se si desidera specializzare il modello sui dati di progetto:
 
@@ -52,7 +52,7 @@ python model/training/fine_tune.py
 ```
 *I risultati (adapter LoRA) verranno salvati nella cartella `model/training/qwen-aidano-checkpoints`.*
 
-## 📁 Struttura del Progetto
+## Struttura del Progetto
 
 ```
 chatbot/
