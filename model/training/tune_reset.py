@@ -19,8 +19,8 @@ def reset_tuning():
         # Vecchi checkpoint (se li usavi prima)
         os.path.join(script_dir, "qwen-aidano-checkpoints"),
 
-        # Dataset espanso (se vuoi rigenerarlo da zero)
-        os.path.join(script_dir, "../../data/training_data_expanded.jsonl"),
+        # NOTA: il dataset (training_data_expanded.jsonl) NON viene rimosso:
+        # è dati sorgente, non un artefatto del training.
     ]
 
     print("=" * 50)

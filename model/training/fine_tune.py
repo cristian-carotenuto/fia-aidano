@@ -40,9 +40,10 @@ STEP_PER_RUN = 25          # 25 step per run
 TARGET_TOTAL_STEPS = 100   # obiettivo totale
 LOG_EVERY_STEPS = 5
 
-# Salvataggi adapter
-ADAPTERS_DIR = "./qwen-aidano-adapters"   # stage-00025, stage-00050, ...
-FINAL_DIR = "./qwen-aidano-final"         # ultimo adapter “finale”
+# Salvataggi adapter (percorsi assoluti relativi alla posizione dello script)
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+ADAPTERS_DIR = os.path.join(_SCRIPT_DIR, "qwen-aidano-adapters")   # stage-00025, stage-00050, ...
+FINAL_DIR = os.path.join(_SCRIPT_DIR, "qwen-aidano-final")         # ultimo adapter "finale"”
 
 # Training
 MAX_SEQ_LEN = 320
