@@ -1,14 +1,60 @@
-# Chatbot QWEN per Map4Aid
+# Aidano - Assistente Intelligente per Map4Aid
 
-Chatbot knowledge-based basato su QWEN 2.5-3B per assistenza utenti su piattaforma di beneficenza.
-Ottimizzato con quantizzazione a 4-bit per girare su GPU con poca VRAM (<6GB).
+Aidano è un assistente virtuale knowledge-based sviluppato nell'ambito del progetto **Map4Aid**.
 
-## Setup Iniziale
+Il chatbot è stato progettato per assistere gli utenti della piattaforma fornendo risposte rapide, coerenti e contestualizzate riguardo ai servizi offerti da Map4Aid. Il sistema utilizza il modello **Qwen 2.5-3B**, specializzato mediante fine-tuning e integrato all'interno del backend dell'applicazione.
+
+Questo repository raccoglie tutti i componenti sviluppati per Aidano, inclusi il codice sorgente, gli script di addestramento, il dataset, gli strumenti di inferenza e gli elementi necessari per replicare il chatbot.
+
+---
+
+# Obiettivi del progetto
+
+Il progetto è stato sviluppato con i seguenti obiettivi:
+
+- fornire un sistema di assistenza automatica agli utenti di Map4Aid;
+- riconoscere correttamente le richieste formulate dagli utenti;
+- restituire risposte coerenti con le informazioni presenti sulla piattaforma;
+- garantire tempi di risposta ridotti;
+
+---
+
+# Caratteristiche principali
+
+- Modello linguistico **Qwen 2.5-3B**.
+- Fine-tuning tramite tecnica **LoRA**.
+- Classificazione degli intent dell'utente.
+- Risposte controllate e coerenti con la base di conoscenza del progetto.
+- Ottimizzazione a 4-bit per GPU con meno di 6 GB di VRAM.
+
+---
+
+# Architettura del sistema
+
+Il sistema è composto dai seguenti componenti principali:
+
+```
+       Utente
+         │
+  Frontend Map4Aid
+         │
+  Backend FastAPI
+         │
+Aidano (Qwen 2.5-3B)
+         │
+  Intent → Risposta
+```
+
+---
+
+# Struttura del progetto
+
+## Setup Iniziale per replicare il progetto
 
 ### 1. Installare le dipendenze all'interno della cartella principale
 
 ```bash
-cd fia-aidano-main
+cd fia-aidano
 pip install -r requirements.txt
 ```
 
@@ -52,10 +98,10 @@ python model/training/fine_tune.py
 ```
 *I risultati (adapter LoRA) verranno salvati nella cartella `model/training/qwen-aidano-checkpoints`.*
 
-## Struttura del Progetto
+## Struttura delle Cartelle
 
-```
-fia-aidano-main/
+```text
+fia-aidano/
 ├── model/
 │   ├── inference/          # Codice per inferenza
 │   │   ├── qwen_client.py  # Client QWEN (3B 4-bit)
@@ -71,3 +117,28 @@ fia-aidano-main/
 ├── backend/                # Integrazione backend
 └── requirements.txt
 ```
+
+# Team
+
+Progetto sviluppato per il corso di **Fondamenti di Intelligenza Artificiale**.
+
+**Componenti del team**
+
+- Nome Cognome
+- Nome Cognome
+- Nome Cognome
+
+---
+
+# Repository
+
+Il repository contiene:
+
+- il codice sorgente del chatbot;
+- gli script di inferenza;
+- gli script di addestramento;
+- il dataset utilizzato per il fine-tuning;
+- il backend di integrazione con Map4Aid;
+- la documentazione del progetto.
+
+---
