@@ -83,39 +83,75 @@ Esistono due modalità di test:
 Se si desidera specializzare il modello sui dati di progetto:
 
 ### 1. Installare le dipendenze di training
+
 ```bash
 pip install -r model/training/requirements-train.txt
 ```
 
-### 2. Generare il dataset espanso
-```bash
-python data/dataset_generator.py
-```
+### 2. Dataset di addestramento
+
+Il dataset esteso utilizzato per il fine-tuning è già incluso nel repository e non deve essere generato manualmente.
 
 ### 3. Avviare il fine-tuning
+
+Il fine-tuning viene eseguito in **quattro sessioni consecutive da 25 step**, per un totale di **100 step**.
+
+Per ogni sessione eseguire:
+
 ```bash
 python model/training/fine_tune.py
 ```
-*I risultati (adapter LoRA) verranno salvati nella cartella `model/training/qwen-aidano-checkpoints`.*
+
+Al termine di ogni esecuzione verrà salvato automaticamente un checkpoint nella cartella:
+
+```text
+model/training/qwen-aidano-checkpoints
+```
+
+Lo script riprenderà automaticamente l'addestramento dall'ultimo checkpoint disponibile. Dopo la quarta esecuzione il modello avrà completato i 100 step previsti.
+
+## Test del modello fine-tuned
+
+Una volta completato il fine-tuning è possibile verificare il corretto funzionamento di Aidano eseguendo:
+
+```bash
+python model/inference/test_aidano_ft.py
+```
+
+Lo script carica il modello fine-tuned e permette di interagire direttamente con Aidano per verificarne il comportamento.
 
 ## Struttura delle Cartelle
 
 ```text
 fia-aidano/
-├── model/
-│   ├── inference/          # Codice per inferenza
-│   │   ├── qwen_client.py  # Client QWEN (3B 4-bit)
-│   │   ├── test_qwen.py    # Test di base
-│   │   └── download_model.py
-│   └── training/           # Fine-tuning LoRA
-│       ├── fine_tune.py    # Script di addestramento
-│       └── requirements-train.txt
+├── backend/
+│   └── qwen_service.py          # Servizio FastAPI per l'integrazione di Aidano
+│
+├── contracts/                   
+│
 ├── data/
-│   ├── training_data.jsonl # Dataset base dai documenti
-│   └── dataset_generator.py # Script per espandere il dataset
-├── contracts/              # API contracts
-├── backend/                # Integrazione backend
-└── requirements.txt
+│   ├── training_data.jsonl          # Dataset originale
+│   ├── training_data_expanded.jsonl # Dataset esteso per il fine-tuning
+│   └── dataset_generator.py         # Script per generare il dataset esteso
+│
+├── model/
+│   ├── inference/
+│   │   ├── download_model.py        # Download automatico del modello Qwen
+│   │   ├── qwen_client.py           # Client per l'inferenza
+│   │   ├── test_qwen.py             # Test generici del modello
+│   │   ├── test_qwen_basic.py       # Test prestazionale del modello base
+│   │   ├── test_qwen_tuning.py      # Test del modello durante il fine-tuning
+│   │   ├── test_aidano_ft.py        # Test del modello fine-tuned
+│   │   └── test_static_responses.py # Verifica delle risposte statiche
+│   │
+│   └── training/
+│       ├── fine_tune.py             # Script di fine-tuning
+│       ├── tune_reset.py            # Ripristino dell'ambiente di training
+│       └── requirements-train.txt   # Dipendenze per l'addestramento
+│
+├── requirements.txt                 # Dipendenze principali
+├── README.md
+└── .gitignore
 ```
 
 # Team
