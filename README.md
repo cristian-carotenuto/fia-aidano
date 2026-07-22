@@ -124,9 +124,8 @@ Progetto sviluppato per il corso di **Fondamenti di Intelligenza Artificiale**.
 
 **Componenti del team**
 
-- Nome Cognome
-- Nome Cognome
-- Nome Cognome
+- Luciano Corvino 0512120518
+- Cristian Carotenuto 0512119840
 
 ---
 
